@@ -7,8 +7,13 @@ import { UpdateRecipeDto } from './dto/update-recipe.dto';
 export class RecipesController {
   constructor(private readonly recipesService: RecipesService) { }
 
-  @Get('all')
-  findAll() {
+  @Get()
+  async getAll() {
     return this.recipesService.findAll();
+  }
+
+  @Post('create')
+  async create(@Body() createRecipeDto: CreateRecipeDto) {
+    await this.recipesService.create(createRecipeDto)
   }
 }
