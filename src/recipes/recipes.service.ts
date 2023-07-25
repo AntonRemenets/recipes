@@ -10,13 +10,13 @@ export class RecipesService {
 
   constructor(@InjectModel(Recipe.name) private readonly recipeModel: Model<Recipe>) { }
 
-  async create(createRecipeDto: CreateRecipeDto): Promise<Recipe> {
-    const createdRecipe = await this.recipeModel.create(createRecipeDto);
-    return createdRecipe;
+  async createRecipe(newRecipe: CreateRecipeDto): Promise<Recipe> {
+    const createdRecipe = await this.recipeModel.create(newRecipe)
+    return createdRecipe
   }
 
   async findAll(): Promise<Recipe[]> {
-    return this.recipeModel.find().exec();
+    return await this.recipeModel.find().exec();
   }
 
 }

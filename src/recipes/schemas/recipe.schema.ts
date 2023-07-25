@@ -1,4 +1,5 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import { ApiProperty } from '@nestjs/swagger';
 import { HydratedDocument } from 'mongoose'
 
 export type RecipeDocument = HydratedDocument<Recipe>
@@ -6,13 +7,16 @@ export type RecipeDocument = HydratedDocument<Recipe>
 @Schema()
 export class Recipe {
 
+    @ApiProperty()
     @Prop({ required: true })
     title: string
 
+    @ApiProperty()
     @Prop({ required: true })
     description: string
 
-    @Prop({ required: false })
+    @ApiProperty({ required: false })
+    @Prop()
     image: string
 }
 
